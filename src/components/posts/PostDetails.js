@@ -34,4 +34,5 @@ const PostDetails = (props) => {
   );
 };
 
+
 export default PostDetails;
