@@ -6,3 +6,4 @@ export const createPost = post => {
     dispatch({ type: CREATE_POST, post });
   };
 };
+
