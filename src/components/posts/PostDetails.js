@@ -1,37 +1,49 @@
 import React from "react";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 
-const PostDetails = (props) => {
+const PostDetails = props => {
   //  console.log(props)
-  const id = props.match.params.id
-  return (
-    <div className="container section post-details">
-      <div className="card z-depth-0">
-        <div className="card-content">
-          <span className="card-title">Post Title - {id}</span>
-          <p>
-            As a Software Engineer Intern in The Garage, you’ll bring a product
-            to life with a small team of other software engineering, design, and
-            program manager interns, receiving guidance and insight from a team
-            of experienced technical coaches and mentors. Your intern team has
-            end-to-end ownership for development and quality of a product (and
-            associated services) that will delight customers and add strategic
-            value for Microsoft. You evaluate requirements, estimate costs, and
-            create and implement features and services. You define and implement
-            the quality criteria for your app, using measurements and insights
-            to understand and validate the quality of experience for customers.
-            You manage risks, leverage other products and technologies, and
-            drive integration with the broader ecosystem. As a software engineer
-            intern, you are dedicated to producing the world’s most advanced
-            software.{" "}
-          </p>
-        </div>
-        <div className="card-action grey-text">
-        <div>Posted by Ramen mania</div>
-        <div>7th December, 1am</div>
+  //  const id = props.match.params.id;
+  const { post } = props;
+  if (post) {
+    return (
+      <div className="container section post-details">
+        <div className="card z-depth-0">
+          <div className="card-content">
+            <span className="card-title">{post.title}</span>
+            <p>{post.content}</p>
+          </div>
+          <div className="card-action grey-text">
+            <div>
+              Posted by {post.authorFirstName} {post.authorLastName}
+            </div>
+            <div>7th December, 1am</div>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="containor center">
+        <p>It seems like, there is no post..</p>
+      </div>
+    );
+  }
 };
 
-export default PostDetails;
+const mapStateToProps = (state, ownProps) => {
+  console.log(state);
+  const id = ownProps.match.params.id;
+  const posts = state.firestore.data.posts;
+  const post = posts ? posts[id] : null;
+  return {
+    post: post
+  };
+};
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "posts" }])
+)(PostDetails);
