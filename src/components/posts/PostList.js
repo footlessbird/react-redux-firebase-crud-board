@@ -39,4 +39,5 @@ const PostList = ({ posts }) => {
   );
 };
 
+
 export default PostList;
