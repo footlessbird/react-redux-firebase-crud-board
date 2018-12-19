@@ -1,5 +1,6 @@
 import { CREATE_POST } from "../actions/postActions";
 import { CREATE_POST_ERROR } from "../actions/postActions";
+import { DELETE_POST } from "../actions/postActions";
 
 const initState = {
   posts: [
@@ -22,6 +23,10 @@ const postReducer = (state = initState, action) => {
     case CREATE_POST_ERROR:
       console.log("error post created", action.error);
       return state;
+
+    case DELETE_POST:
+      return state
+
     default:
       return state;
   }

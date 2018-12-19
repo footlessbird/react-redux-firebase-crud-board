@@ -9,7 +9,7 @@ const PostList = ({ posts }) => {
       posts.map(post => {
         return (
           <li className="collection-item row" key={post.id}>
-            <Link to={"/post/" + post.id}>
+            <Link to={"/post/" + post.id} >
               <h6>
                 <strong>{post.title}</strong>
               </h6>

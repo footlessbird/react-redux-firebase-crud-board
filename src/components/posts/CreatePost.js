@@ -10,9 +10,9 @@ class CreatePost extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    //  console.log(this.state);
+    console.log(this.state);
     this.props.createPost(this.state);
-    this.props.history.push('/')
+    this.props.history.push("/");
   };
   handleChange = e => {
     this.setState({
@@ -21,7 +21,7 @@ class CreatePost extends Component {
   };
 
   render() {
-    const {auth} = this.props
+    const { auth } = this.props;
     if (!auth.uid) return <Redirect to="/signin" />;
     return (
       <div className="container">

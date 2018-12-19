@@ -3,6 +3,7 @@ import { LOGIN_ERROR } from "../actions/authActions";
 import { SIGNOUT } from "../actions/authActions";
 import { SIGNUP_SUCCESS } from "../actions/authActions";
 import { SIGNUP_ERROR } from "../actions/authActions";
+
 const initState = {
   authError: null
 };

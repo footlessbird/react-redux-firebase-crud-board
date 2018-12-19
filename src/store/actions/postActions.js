@@ -1,12 +1,13 @@
 export const CREATE_POST = "CREATE_POST";
 export const CREATE_POST_ERROR = "CREATE_POST_ERROR";
+export const DELETE_POST = "DELETE_POST";
 
 export const createPost = post => {
   return (dispatch, getState, { getFirestore }) => {
     // make async call to database
     const firestore = getFirestore();
-    const profile = getState().firebase.profile
-    const authorId = getState().firebase.auth.uid
+    const profile = getState().firebase.profile;
+    const authorId = getState().firebase.auth.uid;
     firestore
       .collection("posts")
       .add({
@@ -21,6 +22,21 @@ export const createPost = post => {
       })
       .catch(error => {
         dispatch({ type: CREATE_POST_ERROR }, error);
+      });
+  };
+};
+
+export const deletePost = id => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+  
+    //  console.log(id);
+    firestore
+      .collection("posts")
+      .doc(id)
+      .delete()
+      .then(() => {
+        dispatch({ type: DELETE_POST, id });
       });
   };
 };
