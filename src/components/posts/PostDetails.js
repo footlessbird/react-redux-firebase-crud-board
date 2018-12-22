@@ -4,9 +4,32 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { Redirect } from "react-router-dom";
 import moment from "moment";
+import { Link } from "react-router-dom";
+
 import { deletePost } from "../../store/actions/postActions";
 
 class PostDetails extends Component {
+  renderButtons(post) {
+    if (this.props.auth.uid === post.authorId) {
+      return (
+        <div>
+          <button className="btn orange lighten-2 z-depth-o">
+            <Link to={"/update/" + this.props.postId} className="white-text">
+              Update
+            </Link>
+          </button>
+          <button
+            onClick={this.onDeletePost.bind(this)}
+            //  onClick={this.onDeletePost.bind(this, post.id)}
+            className="btn orange lighten-2 z-depth-o"
+          >
+            Delete
+          </button>
+        </div>
+      );
+    }
+  }
+
   onDeletePost() {
     this.props.deletePost(this.props.postId, () => {});
     this.props.history.push("/");
@@ -29,16 +52,7 @@ class PostDetails extends Component {
               </div>
               <div>{moment(post.createdAt.toDate()).calendar()}</div>
             </div>
-            <div className="input-field">
-              <button className="btn orange lighten-2 z-depth-o">Update</button>
-              <button
-                onClick={this.onDeletePost.bind(this)}
-                //  onClick={this.onDeletePost.bind(this, post.id)}
-                className="btn orange lighten-2 z-depth-o"
-              >
-                Delete
-              </button>
-            </div>
+            <div className="input-field">{this.renderButtons(post)}</div>
           </div>
         </div>
       );
@@ -56,11 +70,11 @@ const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
   const posts = state.firestore.data.posts;
   const post = posts ? posts[id] : null;
-  console.log(id);
+  //console.log(id);
   return {
     post: post,
     auth: state.firebase.auth,
-    postArray: state.firestore.ordered.posts,
+    //  postArray: state.firestore.ordered.posts,
     postId: id
   };
 };

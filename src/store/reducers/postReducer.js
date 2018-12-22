@@ -1,6 +1,7 @@
 import { CREATE_POST } from "../actions/postActions";
 import { CREATE_POST_ERROR } from "../actions/postActions";
 import { DELETE_POST } from "../actions/postActions";
+import { UPDATE_POST } from "../actions/postActions";
 
 const initState = {
   posts: [
@@ -12,7 +13,8 @@ const initState = {
     { id: 6, title: "apsfnasfo", content: "091840912074912414" },
     { id: 7, title: "qqqqqqq", content: "_+_(_)*)(^&*%*&%*&%" },
     { id: 8, title: "x", content: "xxxxxxxxxx" }
-  ]
+  ],
+  postError: null
 };
 
 const postReducer = (state = initState, action) => {
@@ -25,7 +27,11 @@ const postReducer = (state = initState, action) => {
       return state;
 
     case DELETE_POST:
-      return state
+      return state;
+
+    case UPDATE_POST:
+      console.log("post updated");
+      return state;
 
     default:
       return state;

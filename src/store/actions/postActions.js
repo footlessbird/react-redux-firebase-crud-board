@@ -1,6 +1,7 @@
 export const CREATE_POST = "CREATE_POST";
 export const CREATE_POST_ERROR = "CREATE_POST_ERROR";
 export const DELETE_POST = "DELETE_POST";
+export const UPDATE_POST = "UPDATE_POST";
 
 export const createPost = post => {
   return (dispatch, getState, { getFirestore }) => {
@@ -29,7 +30,7 @@ export const createPost = post => {
 export const deletePost = id => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
-  
+
     //  console.log(id);
     firestore
       .collection("posts")
@@ -37,6 +38,19 @@ export const deletePost = id => {
       .delete()
       .then(() => {
         dispatch({ type: DELETE_POST, id });
+      });
+  };
+};
+
+export const updatePost = (id, post) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("posts")
+      .doc(id)
+      .update(post)
+      .then(() => {
+        dispatch({ type: UPDATE_POST });
       });
   };
 };
