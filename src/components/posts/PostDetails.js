@@ -86,3 +86,4 @@ export default compose(
   ),
   firestoreConnect([{ collection: "posts" }])
 )(PostDetails);
+
