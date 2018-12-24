@@ -1,19 +1,15 @@
+import _ from "lodash";
 import { CREATE_POST } from "../actions/postActions";
 import { CREATE_POST_ERROR } from "../actions/postActions";
 import { DELETE_POST } from "../actions/postActions";
-import { UPDATE_POST } from "../actions/postActions";
+import {
+  UPDATE_POST,
+  STORE_POSTS_SUCCESS,
+  STORE_POSTS_ERROR
+} from "../actions/postActions";
 
 const initState = {
-  posts: [
-    { id: 1, title: "Canada", content: "it is in the North America" },
-    { id: 2, title: "Frozen", content: "Let it go!!" },
-    { id: 3, title: "Late night shift", content: "something just happened.." },
-    { id: 4, title: "Deathcab for cutie", content: "what sarah said" },
-    { id: 5, title: "Daniel", content: "I'm always watching you" },
-    { id: 6, title: "apsfnasfo", content: "091840912074912414" },
-    { id: 7, title: "qqqqqqq", content: "_+_(_)*)(^&*%*&%*&%" },
-    { id: 8, title: "x", content: "xxxxxxxxxx" }
-  ],
+  posts: [],
   postError: null
 };
 
@@ -32,6 +28,26 @@ const postReducer = (state = initState, action) => {
     case UPDATE_POST:
       console.log("post updated");
       return state;
+
+    case STORE_POSTS_SUCCESS:
+      const snapshot = action.payload;
+      const array = [];
+      //  console.log(snapshot);
+      snapshot.forEach(doc => {
+        //  console.log(doc.data());
+        array.push(doc.data());
+      });
+      //  console.log(array);
+      return {
+        ...state,
+        posts: array.slice(0)
+      };
+
+    case STORE_POSTS_ERROR:
+      return {
+        ...state,
+        postError: action.error.message
+      };
 
     default:
       return state;

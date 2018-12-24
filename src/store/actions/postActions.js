@@ -2,6 +2,8 @@ export const CREATE_POST = "CREATE_POST";
 export const CREATE_POST_ERROR = "CREATE_POST_ERROR";
 export const DELETE_POST = "DELETE_POST";
 export const UPDATE_POST = "UPDATE_POST";
+export const STORE_POSTS_SUCCESS = "STORE_POSTS_SUCCESS";
+export const STORE_POSTS_ERROR = "STORE_POSTS_ERROR";
 
 export const createPost = post => {
   return (dispatch, getState, { getFirestore }) => {
@@ -31,7 +33,6 @@ export const deletePost = id => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
 
-    //  console.log(id);
     firestore
       .collection("posts")
       .doc(id)
@@ -51,6 +52,23 @@ export const updatePost = (id, post) => {
       .update(post)
       .then(() => {
         dispatch({ type: UPDATE_POST });
+      });
+  };
+};
+
+export const storePosts = () => {
+  return (dispatch, getState, { getFirestore }) => {
+    console.log('storePosts has run')
+    const firestore = getFirestore();
+    firestore
+      .collection("posts")
+      .get()
+      .then(snapshot => {
+        console.log(snapshot)
+        dispatch({ type: STORE_POSTS_SUCCESS, payload: snapshot });
+      })
+      .catch(error => {
+        dispatch({ type: STORE_POSTS_ERROR, error });
       });
   };
 };
