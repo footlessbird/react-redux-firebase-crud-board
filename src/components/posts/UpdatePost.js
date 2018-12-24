@@ -50,8 +50,8 @@ class UpdatePost extends Component {
   render() {
     //  console.log(this.state);
     const { auth } = this.props;
-    const {title, content} = this.state
-    const enabled = title.length > 0 && content.length >0 
+    const { title, content } = this.state;
+    const enabled = title.length > 0 && content.length > 0;
     if (!auth.uid) return <Redirect to="/signin" />;
     return (
       <div className="container">
@@ -77,9 +77,12 @@ class UpdatePost extends Component {
           </div>
 
           <div className="input-field">
-            <button className="btn orange lighten-2 z-depth-o"
-            disabled={!enabled}
-            >Update</button>
+            <button
+              className="btn orange lighten-2 z-depth-o"
+              disabled={!enabled}
+            >
+              Update
+            </button>
             {this.updateValidation()}
           </div>
         </form>
