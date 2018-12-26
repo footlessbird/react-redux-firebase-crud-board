@@ -123,3 +123,4 @@ export default compose(
   ),
   firestoreConnect([{ collection: "posts", orderBy: ["createdAt", "desc"] }])
 )(Dashboard);
+
