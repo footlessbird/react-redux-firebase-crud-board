@@ -8,6 +8,22 @@ class CreatePost extends Component {
     title: "",
     content: ""
   };
+  /* dummy data maker for test
+  componentWillMount(){
+    for(let i =0; i < 200; i++){
+      
+      this.props.createPost(
+        this.setState({
+          title: 'created data'+i,
+          content: 'created content'+i
+        })
+        
+      );
+
+    }
+  }
+   */
+
   handleSubmit = e => {
     e.preventDefault();
     console.log(this.state);

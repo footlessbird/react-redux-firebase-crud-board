@@ -17,6 +17,7 @@ const postReducer = (state = initState, action) => {
   switch (action.type) {
     case CREATE_POST:
       console.log("post created", action.post);
+      console.log(action.post);
       return state;
     case CREATE_POST_ERROR:
       console.log("error post created", action.error);
@@ -32,12 +33,15 @@ const postReducer = (state = initState, action) => {
     case STORE_POSTS_SUCCESS:
       const snapshot = action.payload;
       const array = [];
-      //  console.log(snapshot);
       snapshot.forEach(doc => {
-        //  console.log(doc.data());
-        array.push(doc.data());
+        //  console.log(doc);
+        //  console.log(doc.id);
+        array.push(doc);
       });
-      //  console.log(array);
+      
+      //  not too sure orderBy working or not
+      //  _.orderBy(array, "createdAt", "desc");
+      console.log(array);
       return {
         ...state,
         posts: array.slice(0)

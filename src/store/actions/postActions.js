@@ -11,6 +11,7 @@ export const createPost = post => {
     const firestore = getFirestore();
     const profile = getState().firebase.profile;
     const authorId = getState().firebase.auth.uid;
+    
     firestore
       .collection("posts")
       .add({
@@ -24,7 +25,7 @@ export const createPost = post => {
         dispatch({ type: CREATE_POST });
       })
       .catch(error => {
-        dispatch({ type: CREATE_POST_ERROR }, error);
+        dispatch({ type: CREATE_POST_ERROR, error });
       });
   };
 };
@@ -58,13 +59,13 @@ export const updatePost = (id, post) => {
 
 export const storePosts = () => {
   return (dispatch, getState, { getFirestore }) => {
-    console.log('storePosts has run')
+    console.log("storePosts has run");
     const firestore = getFirestore();
     firestore
       .collection("posts")
       .get()
       .then(snapshot => {
-        console.log(snapshot)
+        console.log(snapshot);
         dispatch({ type: STORE_POSTS_SUCCESS, payload: snapshot });
       })
       .catch(error => {

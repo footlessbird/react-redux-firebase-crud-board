@@ -5,7 +5,6 @@ import { compose } from "redux";
 import { Redirect } from "react-router-dom";
 import moment from "moment";
 import { Link } from "react-router-dom";
-
 import { deletePost } from "../../store/actions/postActions";
 
 class PostDetails extends Component {
