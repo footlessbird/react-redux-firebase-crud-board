@@ -45,11 +45,6 @@ const postReducer = (state = initState, action) => {
           authorLastName: doc.data().authorLastName,
           title: doc.data().title,
           content: doc.data().content,
-          /*
-          createdAt: moment(doc.data().createdAt.toDate()).format(
-            "MMMM Do YYYY, h:mm:ss a"
-          )
-          */
           createdAt: doc.data().createdAt
         });
       });
@@ -63,7 +58,6 @@ const postReducer = (state = initState, action) => {
       console.log(array);
       return {
         ...state,
-        //  posts: array.slice(0)
         posts: array
       };
 
