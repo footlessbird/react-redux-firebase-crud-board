@@ -4,25 +4,25 @@ import moment from "moment";
 import _ from "lodash";
 
 const Post = ({ post }) => {
- //  console.log(post);
- //  console.log(post.id);
-  console.log(post.data());
+  //  console.log(post);
+  //  console.log(post.id);
+  console.log(post);
   return (
     <li className="collection-item row">
       <Link to={`/post/${post.id}`}>
         <h6>
-          <strong>{post.data().title}</strong>
+          <strong>{post.title}</strong>
         </h6>
         <ul>
           <li>
             <span className="black-text">
-              written by {post.data().authorFirstName}{" "}
-              {post.data().authorLastName}
+              written by {post.authorFirstName} {post.authorLastName}
             </span>
           </li>
+          <li>authorId {post.authorId}</li>
           <li>
             <span className="grey-text">
-              {moment(post.data().createdAt.toDate()).calendar()}
+              {moment(post.createdAt).calendar()}
             </span>
           </li>
         </ul>

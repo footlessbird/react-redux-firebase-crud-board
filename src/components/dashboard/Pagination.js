@@ -55,7 +55,7 @@ const Pagination = props => {
       <li className={prevBtnClassName}>
         <a
           className="page-link"
-          aria-label="Previous"
+          //  aria-label="Previous"
           id="prev"
           onClick={e => handlePrevNextClick(e, pages, currentPage)}
         >

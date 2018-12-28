@@ -49,7 +49,7 @@ class PostDetails extends Component {
               <div>
                 Posted by {post.authorFirstName} {post.authorLastName}
               </div>
-              <div>{moment(post.createdAt.toDate()).calendar()}</div>
+              <div> {moment(post.createdAt).calendar()}</div>
             </div>
             <div className="input-field">{this.renderButtons(post)}</div>
           </div>

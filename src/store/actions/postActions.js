@@ -11,7 +11,7 @@ export const createPost = post => {
     const firestore = getFirestore();
     const profile = getState().firebase.profile;
     const authorId = getState().firebase.auth.uid;
-    
+
     firestore
       .collection("posts")
       .add({
@@ -19,7 +19,7 @@ export const createPost = post => {
         authorFirstName: profile.firstName,
         authorLastName: profile.lastName,
         authorId: authorId,
-        createdAt: new Date()
+        createdAt: Date.now()
       })
       .then(() => {
         dispatch({ type: CREATE_POST });
@@ -61,6 +61,7 @@ export const storePosts = () => {
   return (dispatch, getState, { getFirestore }) => {
     console.log("storePosts has run");
     const firestore = getFirestore();
+    
     firestore
       .collection("posts")
       .get()

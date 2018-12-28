@@ -1,4 +1,6 @@
 import _ from "lodash";
+import moment from "moment";
+
 import { CREATE_POST } from "../actions/postActions";
 import { CREATE_POST_ERROR } from "../actions/postActions";
 import { DELETE_POST } from "../actions/postActions";
@@ -36,15 +38,33 @@ const postReducer = (state = initState, action) => {
       snapshot.forEach(doc => {
         //  console.log(doc);
         //  console.log(doc.id);
-        array.push(doc);
+        array.push({
+          id: doc.id,
+          authorId: doc.data().authorId,
+          authorFirstName: doc.data().authorFirstName,
+          authorLastName: doc.data().authorLastName,
+          title: doc.data().title,
+          content: doc.data().content,
+          /*
+          createdAt: moment(doc.data().createdAt.toDate()).format(
+            "MMMM Do YYYY, h:mm:ss a"
+          )
+          */
+          createdAt: doc.data().createdAt
+        });
       });
-      
-      //  not too sure orderBy working or not
-      //  _.orderBy(array, "createdAt", "desc");
+
+      array.sort((a, b) => {
+        return (
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+      });
+
       console.log(array);
       return {
         ...state,
-        posts: array.slice(0)
+        //  posts: array.slice(0)
+        posts: array
       };
 
     case STORE_POSTS_ERROR:

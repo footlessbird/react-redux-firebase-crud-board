@@ -62,9 +62,9 @@ class Dashboard extends Component {
     const postsToShow = _.slice(storedPosts, startIndex, endIndex);
     //  console.log(postsToShow);
     //  console.log(this.props.storedPosts);
-    return _.map(postsToShow, (post,key) => {
+    return _.map(postsToShow, (post, key) => {
       //  console.log(key)
-      //  console.log(post)
+      console.log(post);
       return <Post key={key} post={post} />;
     });
   }
@@ -95,7 +95,8 @@ class Dashboard extends Component {
           </div>
         </div>
         <div>
-          <Pagination className="pagiantion"
+          <Pagination
+            className="pagiantion"
             currentPage={this.state.currentPage}
             pageNumbers={pageNumbers}
             handlePrevNextClick={this.handlePrevNextClick.bind(this)}
@@ -121,5 +122,7 @@ export default compose(
     mapStateToProps,
     { storePosts }
   ),
-  firestoreConnect([{ collection: "posts", orderBy: ["createdAt", "desc"] }])
+  firestoreConnect([{ collection: "posts"
+  //  , orderBy: ["createdAt", "desc"] 
+}])
 )(Dashboard);
