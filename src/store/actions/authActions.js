@@ -1,3 +1,5 @@
+//  import { database } from "../../config/firebaseConfig";
+
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 export const SIGNOUT = "SIGNOUT";
@@ -7,7 +9,7 @@ export const SIGNUP_ERROR = "SIGNUP_ERROR";
 export const signIn = credentials => {
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
-
+    console.log(firebase)
     firebase
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)

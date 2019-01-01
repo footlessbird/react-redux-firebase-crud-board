@@ -99,8 +99,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     auth: state.firebase.auth,
     post: post,
-    postId: id,
-    postError: state.post.postError
+    postId: id
   };
 };
 

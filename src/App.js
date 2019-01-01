@@ -9,10 +9,10 @@ import CreatePost from "./components/posts/CreatePost";
 import UpdatePost from "./components/posts/UpdatePost";
 
 /**
- * 
+ *
  * The order in <Switch> is super important if a path has "/post/:id" places
- * below than "/post" or "/", then it will not work 
- *  
+ * below than "/post" or "/", then it will not work
+ *
  */
 class App extends Component {
   render() {

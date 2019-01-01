@@ -94,6 +94,7 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
+
         <div>
           <Pagination
             className="pagiantion"
@@ -113,7 +114,7 @@ const mapStateToProps = state => {
   return {
     posts: state.firestore.ordered.posts,
     auth: state.firebase.auth,
-    storedPosts: state.post.posts
+    storedPosts: state.posts.posts
   };
 };
 
@@ -122,7 +123,10 @@ export default compose(
     mapStateToProps,
     { storePosts }
   ),
-  firestoreConnect([{ collection: "posts"
-  //  , orderBy: ["createdAt", "desc"] 
-}])
+  firestoreConnect([
+    {
+      collection: "posts",
+      orderBy: ["createdAt", "desc"]
+    }
+  ])
 )(Dashboard);
