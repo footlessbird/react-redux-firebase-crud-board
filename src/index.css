@@ -13,6 +13,28 @@ code {
     monospace;
 }
 
-div button {
+#update-buttons button:nth-child(2) {
   margin-left: 10px !important;
 }
+
+input[type="text"]:not(.browser-default):focus:not([readonly]),
+input[type="email"]:not(.browser-default):focus:not([readonly]),
+input[type="password"]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-color: #ffb74d;
+  box-shadow: none;
+}
+
+
+.pagination li.active {
+  background-color: #ffb74d;
+}
+
+#comment-container{
+  margin-top: 3em
+}
+
+#comment-box{
+  margin-top: 1em
+}
+

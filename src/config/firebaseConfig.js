@@ -15,10 +15,9 @@ var config = {
   storageBucket: "simplecommunity-1fad0.appspot.com",
   messagingSenderId: "195346449472"
 };
+
 firebase.initializeApp(config);
 firebase.firestore().settings({ timestampsInSnapshots: true });
 
-// trying to use realtime database
-export const database = firebase.database();
 
 export default firebase;

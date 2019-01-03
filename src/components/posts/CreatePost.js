@@ -8,21 +8,35 @@ class CreatePost extends Component {
     title: "",
     content: ""
   };
+  
   /* dummy data maker for test
-  componentWillMount(){
-    for(let i =0; i < 200; i++){
-      
+  componentWillMount() {
+    for (let i = 0; i < 200; i++) {
       this.props.createPost(
         this.setState({
-          title: 'created data'+i,
-          content: 'created content'+i
+          title: "created data" + i,
+          content: "created content" + i
         })
-        
       );
-
     }
   }
-   */
+*/
+
+  createValidation() {
+    console.log("update validation");
+    console.log(this.state.title);
+    console.log(this.state.content);
+
+    if (this.state.title && this.state.content) {
+      return null;
+    } else {
+      return (
+        <div className="red-text center">
+          <p>Please fill out the field(s)</p>
+        </div>
+      );
+    }
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -38,6 +52,9 @@ class CreatePost extends Component {
 
   render() {
     const { auth } = this.props;
+    const { title, content } = this.state;
+    const enabled = title.length > 0 && content.length > 0;
+
     if (!auth.uid) return <Redirect to="/signin" />;
     return (
       <div className="container">
@@ -57,7 +74,13 @@ class CreatePost extends Component {
           </div>
 
           <div className="input-field">
-            <button className="btn orange lighten-2 z-depth-o">Create</button>
+            <button
+              className="btn orange lighten-2 z-depth-o"
+              disabled={!enabled}
+            >
+              Create
+            </button>
+            {this.createValidation()}
           </div>
         </form>
       </div>

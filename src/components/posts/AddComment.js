@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {addComment} from '../../store/actions/postActions'
+import { addComment } from "../../store/actions/postActions";
 export class AddComment extends Component {
   state = {
     comment: ""
@@ -21,6 +21,8 @@ export class AddComment extends Component {
   };
 
   render() {
+    const { comment } = this.state;
+    const enabled = comment.length > 0;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -31,7 +33,12 @@ export class AddComment extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <button className="btn orange lighten-2 z-depth-o">Comment</button>
+          <button
+            className="btn orange lighten-2 z-depth-o"
+            disabled={!enabled}
+          >
+            Comment
+          </button>
         </form>
       </div>
     );
@@ -44,4 +51,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {addComment})(AddComment);
+export default connect(
+  mapStateToProps,
+  { addComment }
+)(AddComment);

@@ -1,4 +1,3 @@
-import { database } from "../../config/firebaseConfig";
 
 export const CREATE_POST = "CREATE_POST";
 export const CREATE_POST_ERROR = "CREATE_POST_ERROR";
@@ -89,12 +88,12 @@ export const addComment = (postId, comment) => {
     const userId = user.uid;
     const ref = firestore.doc("posts/" + postId);
     const subcollection = ref.collection("comments");
-    //  const reference = firestore.collection('posts').doc(postId).collection('userComments')
 
     subcollection.add({
       ...comment,
       postId: postId,
       uid: userId,
+      authorFirstName: profile.firstName,
       createdAt: Date.now()
     });
 
@@ -105,10 +104,9 @@ export const addComment = (postId, comment) => {
 export const storeComments = postId => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
-    const ref = firestore.doc("posts/" + postId);
-    const subcollection = ref.collection("comments");
-
-    subcollection.get().then(snapshot => {
+    const commentsRef = firestore.collection('posts').doc(postId).collection('comments')
+    
+    commentsRef.get().then(snapshot => {
       const comments = [];
       snapshot.forEach(doc => {
         console.log(doc.data());
@@ -118,6 +116,7 @@ export const storeComments = postId => {
           postId: doc.data().postId,
           uid: doc.data().userId,
           comment: doc.data().comment,
+          authorFirstName: doc.data().authorFirstName,
           createdAt: doc.data().createdAt
         });
       });
@@ -127,9 +126,9 @@ export const storeComments = postId => {
           new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
         );
       });
-      //  return comments;
       console.log(comments);
       dispatch({ type: STORE_COMMENTS_SUCCESS, payload: comments });
     });
+    
   };
 };

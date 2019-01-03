@@ -15,24 +15,30 @@ import AddComment from "./AddComment";
 import Comment from "./Comment";
 
 class PostDetails extends Component {
+  componentWillMount(){
+    const {postId} = this.props 
+    this.props.storeComments(postId)
+  }
   renderComments() {
-    const {posts ,post, postId, comments} = this.props;
-    console.log(comments)
+    const { postId, comments } = this.props;
+    console.log(comments);    
     
     return _.map(comments, (comment, key) => {
-      if (postId === comment.postId) {
-        return <Comment key={key} comment={comment} />;
-      }
+      if(postId===comment.postId)
+      return (
+        <Comment postId={postId} key={key} comment={comment}>
+          {comment.comment}
+        </Comment>
+      );
     });
-    
   }
 
   renderButtons(post) {
     if (this.props.auth.uid === post.authorId) {
       return (
-        <div>
+        <div id="update-buttons">
           <button className="btn orange lighten-2 z-depth-o">
-            <Link to={"/update/" + this.props.postId} className="white-text">
+            <Link id="update-button" to={"/update/" + this.props.postId} className="white-text">
               Update
             </Link>
           </button>
@@ -76,7 +82,7 @@ class PostDetails extends Component {
           </div>
           <AddComment postId={match.params.id} />
 
-          <div>{this.renderComments()}</div>
+          <div id="comment-container">{this.renderComments()}</div>
         </div>
       );
     } else {
@@ -103,7 +109,6 @@ const mapStateToProps = (state, ownProps) => {
     //  comments: state.posts.comments
     posts: posts,
     comments: state.posts.comments
-
   };
 };
 
