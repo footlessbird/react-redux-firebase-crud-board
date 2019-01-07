@@ -81,10 +81,10 @@ class Home extends Component {
       <div className="index-wrapper">
         <SearchBar onSubmit={this.handleSearchBar.bind(this)} />
 
-        <Route exact path={`/`} component={Dashboard} />
-        <Route path={`/posts`} component={Dashboard} />
+        <Route exact path="/" component={Dashboard} />
+        <Route path="/posts" component={Dashboard} />
         <Route
-          path={`/search`}
+          path="/search"
           render={() => this.renderFilteredPosts(this.state.filteredPosts)}
         />
       </div>
