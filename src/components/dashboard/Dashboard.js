@@ -13,8 +13,9 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      filteredPosts: [],
       currentPage: 1,
-      postsPerPage: 4
+      postsPerPage: 3
     };
   }
 
@@ -27,7 +28,7 @@ class Dashboard extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.storePosts();
   }
 
@@ -62,6 +63,7 @@ class Dashboard extends Component {
     const postsToShow = _.slice(storedPosts, startIndex, endIndex);
     //  console.log(postsToShow);
     //  console.log(this.props.storedPosts);
+
     return _.map(postsToShow, (post, key) => {
       //  console.log(key)
       console.log(post);
@@ -70,11 +72,12 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { posts, auth, storedPosts } = this.props;
+    const { auth, storedPosts } = this.props;
     if (!auth.uid) return <Redirect to="/signin" />;
+
     //  console.log(Array.isArray(storedPosts));
     //  console.log(storedPosts.length);
-
+    
     // creating page numbers like [1][2][3] at the bottom of the layout
     const pageNumbers = [];
     for (
@@ -112,7 +115,7 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
   //  console.log(posts);
   return {
-    posts: state.firestore.ordered.posts,
+    //  posts: state.firestore.ordered.posts,
     auth: state.firebase.auth,
     storedPosts: state.posts.posts
   };

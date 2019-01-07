@@ -7,6 +7,7 @@ import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import CreatePost from "./components/posts/CreatePost";
 import UpdatePost from "./components/posts/UpdatePost";
+import Home from './components/dashboard/Home'
 
 /**
  *
@@ -22,8 +23,7 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route path="/post/:id" component={PostDetails} />
-            <Route path="/post" component={Dashboard} />
-            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/" component={Home} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signUp" component={SignUp} />
             <Route path="/create" component={CreatePost} />
@@ -36,3 +36,16 @@ class App extends Component {
 }
 
 export default App;
+
+/*
+<Switch>
+            <Route path="/post/:id" component={PostDetails} />
+            <Route path="/post" component={Dashboard} />
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/signUp" component={SignUp} />
+            <Route path="/create" component={CreatePost} />
+            <Route path="/update/:id" component={UpdatePost} />
+          </Switch>
+
+*/

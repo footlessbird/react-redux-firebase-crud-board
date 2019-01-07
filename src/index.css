@@ -25,16 +25,14 @@ textarea.materialize-textarea:focus:not([readonly]) {
   box-shadow: none;
 }
 
-
 .pagination li.active {
   background-color: #ffb74d;
 }
 
-#comment-container{
-  margin-top: 3em
+#comment-container {
+  margin-top: 3em;
 }
 
-#comment-box{
-  margin-top: 1em
+#comment-box {
+  margin-top: 1em;
 }
-

@@ -2,16 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
-
 const PostList = ({ storedPosts }) => {
-  console.log(storedPosts)
+  console.log(storedPosts);
   function renderPost() {
     return (
       storedPosts &&
       storedPosts.map(post => {
         return (
           <li className="collection-item row" key={post.createdAt}>
-            <Link to={"/post/" + post.id} >
+            <Link to={"/post/" + post.id}>
               <h6>
                 <strong>{post.title}</strong>
               </h6>
