@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import _ from "lodash";
 import Post from "../posts/Post";
 import SearchBar from "./SearchBar";
@@ -80,13 +80,12 @@ class Home extends Component {
     return (
       <div className="index-wrapper">
         <SearchBar onSubmit={this.handleSearchBar.bind(this)} />
-
-        <Route exact path="/" component={Dashboard} />
-        <Route path="/posts" component={Dashboard} />
-        <Route
-          path="/search"
-          render={() => this.renderFilteredPosts(this.state.filteredPosts)}
-        />
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/posts" component={Dashboard} />
+          <Route
+            path="/search"
+            render={() => this.renderFilteredPosts(this.state.filteredPosts)}
+          />
       </div>
     );
   }
