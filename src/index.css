@@ -38,3 +38,11 @@ textarea.materialize-textarea:focus:not([readonly]) {
   margin-top: 1em
 }
 
+#dashboard{
+  margin-top: 4em
+}
+
+#search-box{
+  width: 89%
+}
+

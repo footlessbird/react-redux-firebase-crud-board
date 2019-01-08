@@ -9,15 +9,17 @@ import {
   STORE_POSTS_SUCCESS,
   STORE_POSTS_ERROR,
   //  ADD_COMMENT_SUCCESS,
-  STORE_COMMENTS_SUCCESS
+  STORE_COMMENTS_SUCCESS,
+  PASSING_SEARCH_TERM
 } from "../actions/postActions";
 
 const initState = {
   posts: [],
   postError: null,
-  comments: []
+  comments: [],
+  filteredPosts: []
 };
-
+const array = [];
 const postsReducer = (state = initState, action) => {
   switch (action.type) {
     case CREATE_POST:
@@ -37,7 +39,7 @@ const postsReducer = (state = initState, action) => {
 
     case STORE_POSTS_SUCCESS:
       const snapshot = action.payload;
-      const array = [];
+      //  const array = [];
       snapshot.forEach(doc => {
         //  console.log(doc);
         //  console.log(doc.id);
@@ -69,34 +71,16 @@ const postsReducer = (state = initState, action) => {
         ...state,
         postError: action.error.message
       };
-    /*
-    case ADD_COMMENT_SUCCESS:
-      const commentSnapshot = action.payload;
-      const commentArray = [];
-      commentSnapshot.forEach(doc => {
-        console.log(doc.data());
-
-        commentArray.push({
-          id: doc.id,
-          postId: doc.data().postId,
-          uid: doc.data().userId,
-          comment: doc.data().comment,
-          createdAt: doc.data().createdAt
-        });
+    
+      case PASSING_SEARCH_TERM:
+      const filteredPosts = array.filter(post => {
+        return post.title.toLowerCase().match(action.payload);
       });
 
-      commentArray.sort((a, b) => {
-        return (
-          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-        );
-      });
-      
-      console.log(commentArray);
       return {
         ...state,
-        comments: commentArray
+        filteredPosts: filteredPosts
       };
-*/
 
     case STORE_COMMENTS_SUCCESS:
       return {

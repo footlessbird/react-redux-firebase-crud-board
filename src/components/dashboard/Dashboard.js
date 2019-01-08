@@ -14,7 +14,7 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       currentPage: 1,
-      postsPerPage: 4
+      postsPerPage: 3
     };
   }
 
@@ -86,7 +86,7 @@ class Dashboard extends Component {
     }
 
     return (
-      <div className="dashboard container">
+      <div className="dashboard container" id="dashboard">
         <div className="row">
           <div className="col s12">
             <div className="post-list section">

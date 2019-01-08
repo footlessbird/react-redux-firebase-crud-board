@@ -7,6 +7,7 @@ import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import CreatePost from "./components/posts/CreatePost";
 import UpdatePost from "./components/posts/UpdatePost";
+import SearchDashboard from './components/dashboard/SearchDashboard'
 
 /**
  *
@@ -14,6 +15,7 @@ import UpdatePost from "./components/posts/UpdatePost";
  * below than "/post" or "/", then it will not work
  *
  */
+
 class App extends Component {
   render() {
     return (
@@ -28,6 +30,7 @@ class App extends Component {
             <Route path="/signUp" component={SignUp} />
             <Route path="/create" component={CreatePost} />
             <Route path="/update/:id" component={UpdatePost} />
+            <Route path="/search" component={SearchDashboard} />
           </Switch>
         </div>
       </BrowserRouter>

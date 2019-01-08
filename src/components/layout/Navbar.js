@@ -1,23 +1,41 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
+import { Link, Redirect } from "react-router-dom";
 import SignedInLinks from "./SignedInLinks";
 import SignedOutLinks from "./SignedOutLinks";
 import { connect } from "react-redux";
+import SearchBar from "./SearchBar";
+import { storePosts, passingSearchTerm } from "../../store/actions/postActions";
 
-const Navbar = props => {
-  const { auth, profile } = props;
-  const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />;
-  return (
-    <nav className="nav-wrapper grey lighten-1">
-      <div className="container">
-        <Link to="/" className="brand-logo">
-          SimpleCommunity
-        </Link>
-        {links}
-      </div>
-    </nav>
-  );
-};
+class Navbar extends Component {
+  handleSearchBar(searchTerm) {
+    this.props.passingSearchTerm(searchTerm);
+    if (window.location.href !== "/search") {
+      window.location.href = "/search";
+    }
+  }
+
+  render() {
+    const { auth, profile } = this.props;
+    const links = auth.uid ? (
+      <SignedInLinks profile={profile} />
+    ) : (
+      <SignedOutLinks />
+    );
+
+    return (
+      <nav className="nav-wrapper grey lighten-1">
+        <div className="container">
+          <Link to="/" className="brand-logo">
+            SimpleCommunity
+          </Link>
+          {links}
+          <SearchBar onSubmit={this.handleSearchBar.bind(this)} />
+        </div>
+      </nav>
+    );
+  }
+}
+
 const mapStateToProps = state => {
   //  console.log(state);
 
@@ -27,4 +45,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(
+  mapStateToProps,
+  { passingSearchTerm }
+)(Navbar);

@@ -1,4 +1,3 @@
-
 export const CREATE_POST = "CREATE_POST";
 export const CREATE_POST_ERROR = "CREATE_POST_ERROR";
 export const DELETE_POST = "DELETE_POST";
@@ -7,6 +6,7 @@ export const STORE_POSTS_SUCCESS = "STORE_POSTS_SUCCESS";
 export const STORE_POSTS_ERROR = "STORE_POSTS_ERROR";
 export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
 export const STORE_COMMENTS_SUCCESS = "STORE_COMMENTS_SUCCESS";
+export const PASSING_SEARCH_TERM = 'PASSING_SEARCH_TERM'
 
 export const createPost = post => {
   return (dispatch, getState, { getFirestore }) => {
@@ -104,8 +104,11 @@ export const addComment = (postId, comment) => {
 export const storeComments = postId => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
-    const commentsRef = firestore.collection('posts').doc(postId).collection('comments')
-    
+    const commentsRef = firestore
+      .collection("posts")
+      .doc(postId)
+      .collection("comments");
+
     commentsRef.get().then(snapshot => {
       const comments = [];
       snapshot.forEach(doc => {
@@ -129,6 +132,11 @@ export const storeComments = postId => {
       console.log(comments);
       dispatch({ type: STORE_COMMENTS_SUCCESS, payload: comments });
     });
-    
+  };
+};
+
+export const passingSearchTerm = searchTerm => {
+  return dispatch => {
+    dispatch({ type: PASSING_SEARCH_TERM, payload: searchTerm });
   };
 };
