@@ -7,6 +7,7 @@ import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import CreatePost from "./components/posts/CreatePost";
 import UpdatePost from "./components/posts/UpdatePost";
+import SearchBar from "./components/dashboard/SearchDashboard";
 
 /**
  *
@@ -21,6 +22,7 @@ class App extends Component {
         <div className="App">
           <Navbar />
           <Switch>
+            <Route path="/search/:searchTerm" component={SearchBar} />
             <Route path="/post/:id" component={PostDetails} />
             <Route path="/post" component={Dashboard} />
             <Route exact path="/" component={Dashboard} />

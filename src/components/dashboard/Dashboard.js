@@ -8,6 +8,7 @@ import queryString from "query-string";
 import { storePosts } from "../../store/actions/postActions";
 import Post from "../posts/Post";
 import Pagination from "./Pagination";
+import SearchBar from "./SearchBar";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -29,6 +30,17 @@ class Dashboard extends Component {
 
   componentWillMount() {
     this.props.storePosts();
+  }
+
+  handleSearchBar(searchTerm) {
+    const { storedPosts } = this.props;
+    const filteredPosts = storedPosts.filter(post => {
+      return post.title.toLowerCase().match(searchTerm);
+    });
+
+    this.setState({ filteredPosts: filteredPosts, lastIndex: 0 });
+    this.props.history.push("/search/" + searchTerm);
+    console.log(filteredPosts);
   }
 
   handlePaginationClick(e) {
@@ -89,6 +101,7 @@ class Dashboard extends Component {
       <div className="dashboard container">
         <div className="row">
           <div className="col s12">
+            <SearchBar onSubmit={this.handleSearchBar.bind(this)} />
             <div className="post-list section">
               <ul className="collection col s12">{this.renderPosts()}</ul>
             </div>

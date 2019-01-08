@@ -1,4 +1,3 @@
-
 export const CREATE_POST = "CREATE_POST";
 export const CREATE_POST_ERROR = "CREATE_POST_ERROR";
 export const DELETE_POST = "DELETE_POST";
