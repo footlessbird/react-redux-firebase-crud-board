@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-//  import { createPost } from "../../store/actions/postActions";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { Redirect } from "react-router-dom";
 import { updatePost } from "../../store/actions/postActions";
+import {showAlert} from '../layout/alert'
 
 class UpdatePost extends Component {
   componentWillMount() {
@@ -39,6 +39,8 @@ class UpdatePost extends Component {
     console.log(this.state.content);
     */
     this.props.history.push("/");
+    showAlert('Your post successfully updated!')
+
   };
 
   handleChange = e => {

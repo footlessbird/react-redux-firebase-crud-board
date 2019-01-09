@@ -13,6 +13,8 @@ import {
 import _ from "lodash";
 import AddComment from "./AddComment";
 import Comment from "./Comment";
+import {showAlert} from '../layout/alert'
+
 
 class PostDetails extends Component {
   componentWillMount(){
@@ -57,6 +59,8 @@ class PostDetails extends Component {
   onDeletePost() {
     this.props.deletePost(this.props.postId, () => {});
     this.props.history.push("/");
+    showAlert('Your post successfully deleted!')
+
   }
 
   render() {

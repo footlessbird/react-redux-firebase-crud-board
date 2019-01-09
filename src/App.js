@@ -7,6 +7,9 @@ import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import CreatePost from "./components/posts/CreatePost";
 import UpdatePost from "./components/posts/UpdatePost";
+import Alert from "react-s-alert";
+import "react-s-alert/dist/s-alert-default.css";
+import 'react-s-alert/dist/s-alert-css-effects/stackslide.css';
 
 /**
  *
@@ -29,6 +32,7 @@ class App extends Component {
             <Route path="/create" component={CreatePost} />
             <Route path="/update/:id" component={UpdatePost} />
           </Switch>
+        <Alert stack={{ limit: 3 }} />
         </div>
       </BrowserRouter>
     );

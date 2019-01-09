@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createPost } from "../../store/actions/postActions";
 import { Redirect } from "react-router-dom";
+import {showAlert} from '../layout/alert'
 
 class CreatePost extends Component {
   state = {
@@ -43,7 +44,9 @@ class CreatePost extends Component {
     console.log(this.state);
     this.props.createPost(this.state);
     this.props.history.push("/");
+    showAlert('Your post successfully created!')
   };
+
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
