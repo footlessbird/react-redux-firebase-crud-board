@@ -18,10 +18,10 @@ password: password
 * Materialize CSS
 
 ## presentation
-![Home](../public/images/sc1.png)
+![Home](./images/sc1.png)
 
-![signup](../public/images/sc2.png)
+![signup](./public/images/sc2.png)
 
-![postDetail](../public/images/sc3.png)
+![postDetail](./public/images/sc3.png)
 
-![comment](../public/images/sc4.png)
+![comment](./public/images/sc4.png)
