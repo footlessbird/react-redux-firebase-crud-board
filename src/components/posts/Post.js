@@ -19,7 +19,6 @@ const Post = ({ post }) => {
               written by {post.authorFirstName} {post.authorLastName}
             </span>
           </li>
-          <li>authorId {post.authorId}</li>
           <li>
             <span className="grey-text">
               {moment(post.createdAt).calendar()}
