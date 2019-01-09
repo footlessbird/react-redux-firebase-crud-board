@@ -20,8 +20,8 @@ password: password
 ## presentation
 ![Home](./images/sc1.png)
 
-![signup](./public/images/sc2.png)
+![signup](./images/sc2.png)
 
-![postDetail](./public/images/sc3.png)
+![postDetail](./images/sc3.png)
 
-![comment](./public/images/sc4.png)
+![comment](./images/sc4.png)
