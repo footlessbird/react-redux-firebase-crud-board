@@ -4,7 +4,7 @@
 This is literally a simple members only board application in which mainly users can communicate by posting some stories and commenting.
 
 **Demo:** 
-***www.react-redux-fb-simplecommunity.herokuapp.com***
+***https://www.react-redux-fb-simplecommunity.herokuapp.com***
 
 **Test account:**
 ```
