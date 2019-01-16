@@ -18,11 +18,4 @@ password: password
 * Cloud Firestore
 * Materialize CSS
 
-## presentation
-![Home](./images/sc1.png)
 
-![signup](./images/sc2.png)
-
-![postDetail](./images/sc3.png)
-
-![comment](./images/sc4.png)
